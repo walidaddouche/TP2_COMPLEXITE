@@ -54,7 +54,7 @@ public class Formule {
         Literal[] Literals = new Literal[2 * NumberDeLiteral + 1];
         Scanner scanner = new Scanner(new FileReader(path));
         int index1 = 0, index2 = 0;
-        Stack<Integer> Indexs = new Stack<>();
+        Stack<Integer> index = new Stack<>();
         while (!scanner.hasNextInt()) {
             scanner.next();
         }
@@ -62,24 +62,24 @@ public class Formule {
         while (scanner.hasNextLine()) {
             for (Integer lit : getAllIntFromString(scanner.nextLine())) {
                 /* on utilise la methode getAllIntFromString qui retoune un Arraylist pour capturer
-                les deux litterals de chaque ligne et ignorer le 0 et donc on aura une liste qui contient 2 Integer
+                les deux littéraux de chaque ligne et ignorer le 0 et donc on aura une liste qui contient 2 Integer
 
                  */
                 if (lit > 0) {
                     index1 = lit;
-                    Indexs.add(index1);
+                    index.add(index1);
                     if (Literals[index1] == null) {
                         Literals[index1] = new Literal(lit);
                     }
                 } else if (lit < 0) {
                     index2 = -1 * lit + NumberDeLiteral;
-                    Indexs.add(index2);
+                    index.add(index2);
                     if (Literals[index2] == null) {
                         Literals[index2] = new Literal(lit);
                     }
                 }
             }
-            Literals[Indexs.pop()].addNeighbour(Literals[Indexs.pop()]);
+            Literals[index.pop()].addNeighbour(Literals[index.pop()]);
 
         }
         return Literals;

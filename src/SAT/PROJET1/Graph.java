@@ -159,6 +159,7 @@ class Graph {
     public static void main(String[] args) throws FileNotFoundException {
 
         // TEST DE LA METHODE QUI PRINT TOUTES LES COMPOSANTES CONNEXES DES GRAPHES sur des EXEMPLES
+        /*
         Graph g1 = new Graph(5);
 
         g1.addArc(1, 0);
@@ -220,10 +221,13 @@ class Graph {
         g5.printSCCs();
         System.out.println("----------------------------------------------------------------------------");
 
+
+         */
         Formule formule = new Formule("src/SAT/PROJET1/formule-2-sat.txt");
+        System.out.println(formule);
         Graph graph = new Graph(formule);
 
-        graph.printSCCs();
+        //graph.printSCCs();
 
 
     }

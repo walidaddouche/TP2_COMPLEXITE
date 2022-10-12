@@ -28,7 +28,7 @@ public class Literal {
         // il ajoute un literal dans sa liste de Relation
         // ce qui veut dire que ce litteral avec this forment une clause
         for (Literal ignored : this.getLiteralRelation()) {
-            // Verifie si le literal qu'on souhaite ajouter n'est pas  a l'interieur
+            // Vérifie si le literal qu'on souhaite ajouter n'est pas a l'intérieur
             if (ignored.getSommet() == literal.getSommet())
                 return;
         }
