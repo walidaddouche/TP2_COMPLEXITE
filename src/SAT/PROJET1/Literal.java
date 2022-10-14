@@ -1,16 +1,21 @@
 package SAT.PROJET1;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOError;
 import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Literal {
     private int sommet;
 
 
-    public Literal(int sommet) {this.sommet = sommet;}
-
-
+    public Literal(int sommet) {
+        this.sommet = sommet;
+    }
 
 
     @Override
@@ -20,21 +25,54 @@ public class Literal {
         return "x" + sommet;
     }
 
-    public static void main(String[] args) {
-        int nC = 2; int nL = 6+2;  // Nombre de clauses et nombre de literals
-        Literal[] literals = new Literal[nL-1];
-        for (int i = 1; i < nL/2; i++) {
-            System.out.println(i);
+    public static void main(String[] args) throws FileNotFoundException {
+        // Nombre de clauses et nombre de literals
+
+        FileReader fileReader = new FileReader("src/SAT/PROJET1/formule-2-sat.txt");
+        Scanner scanner = new Scanner(fileReader);
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+        }
+        int nL = scanner.nextInt(); //  le nombre de literals
+
+        int nC = scanner.nextInt(); //  le nombre de clauses
+
+        Literal[] literals = new Literal[nL * 2 + 1];
+        Clause[] clauses = new Clause[nC];
+
+        for (int i = 0; i < nC; i++) {
+            clauses[i] = new Clause();
+
+        }
+
+        for (int i = 1; i <= nL; i++) {
             literals[i] = new Literal(i);
         }
-        int j = nL/2 - 1;
-        for (int i =  nL/2; i < nL-1; i++) {
-            literals[i] = new Literal(-(i - j));
-        }
-        System.out.println(Arrays.toString(literals));
-        for (int i = 1; i < nL - 1; i++) {
+        for (int i = nL + 1; i < nL * 2 + 1; i++) {
+            literals[i] = new Literal(-(i - nL));
         }
 
+        scanner.nextLine();
+        int literal;
+        int i = 0;
+        while (scanner.hasNextLine()) {
+            while (scanner.hasNextInt()) {
+                literal = scanner.nextInt();
+                if (literal > 0) {
+                    clauses[i].addLiteral(literals[literal]);
+                } else if (literal < 0) {
+                    clauses[i].addLiteral(literals[(-literal + nL)]);
+                }
+                else  {
+                    i++;
+                    break;
+                }
+
+
+            }
+        }
+        Formula formula = new Formula(clauses);
 
     }
+
 }
