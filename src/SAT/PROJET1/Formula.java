@@ -1,5 +1,7 @@
 package SAT.PROJET1;
 
+import java.util.Arrays;
+
 public class Formula {
     Clause[] clauses;
 
@@ -8,5 +10,8 @@ public class Formula {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Formula : " + Arrays.toString(clauses) ;
+    }
 }
