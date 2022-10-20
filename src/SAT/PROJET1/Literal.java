@@ -2,12 +2,11 @@ package SAT.PROJET1;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Literal {
     private int sommet;
-    private int value ;
+    private boolean value;
 
 
     public Literal(int sommet) {
@@ -15,11 +14,11 @@ public class Literal {
     }
 
 
-    public void setValue(int value) {
+    public void setValue(boolean value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public boolean getValue() {
         return value;
     }
 
@@ -40,7 +39,9 @@ public class Literal {
         Scanner literalsScanner = new Scanner(fileLiteral);
         Scanner valuesScanner = new Scanner(fileValue);
 
-        while (!literalsScanner.hasNextInt()) {literalsScanner.next();}
+        while (!literalsScanner.hasNextInt()) {
+            literalsScanner.next();
+        }
 
         int nL = literalsScanner.nextInt(); //  le nombre de literals
 
@@ -49,9 +50,15 @@ public class Literal {
         Literal[] literals = new Literal[nL * 2 + 1];
         Clause[] clauses = new Clause[nC];
 
-        for (int i = 0; i < nC; i++) {clauses[i] = new Clause();}
-        for (int i = 1; i <= nL; i++) {literals[i] = new Literal(i);}
-        for (int i = nL + 1; i < nL * 2 + 1; i++) {literals[i] = new Literal(-(i - nL));}
+        for (int i = 0; i < nC; i++) {
+            clauses[i] = new Clause();
+        }
+        for (int i = 1; i <= nL; i++) {
+            literals[i] = new Literal(i);
+        }
+        for (int i = nL + 1; i < nL * 2 + 1; i++) {
+            literals[i] = new Literal(-(i - nL));
+        }
 
         literalsScanner.nextLine();
         int literal;
@@ -67,23 +74,37 @@ public class Literal {
                     i++;
                     break;
                 }
-
             }
         }
 
-        int value ;
-        while (valuesScanner.hasNextInt()){
+        int value;
+        while (valuesScanner.hasNextInt()) {
             value = valuesScanner.nextInt();
-            if(value > 0){
-                literals[value].setValue(1);
-                literals[value+nL].setValue(0);
-            }
-            else  {
-                literals[-value+nL].setValue(1);
-                literals[-value].setValue(0);
+            if (value > 0) {
+                literals[value].setValue(true);
+                literals[value + nL].setValue(false);
+            } else {
+                literals[-value + nL].setValue(true);
+                literals[-value].setValue(false);
             }
         }
 
-        System.out.println(Arrays.toString(literals));
+        var result = false;
+        Boolean[] resultArray = new Boolean[clauses.length - 1];
+        var x = 0;
+        for (Clause clause : clauses) {
+            //System.out.println(clause);
+            for (Literal literal1 : clause.literals) {
+                result = literal1.value || result;
+            }
+            resultArray[x] = result;
+            result = false;
+        }
+        for (boolean b:resultArray) {
+            if(!b){
+                System.out.println("False");
+            }
+        }
+        //System.out.println("True");
     }
 }
