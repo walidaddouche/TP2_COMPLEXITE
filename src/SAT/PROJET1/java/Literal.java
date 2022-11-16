@@ -34,7 +34,7 @@ public class Literal {
         // Nombre de clauses et nombre de literals
 
         FileReader fileLiteral = new FileReader("src/SAT/PROJET1/java/resources/formule-2-sat.txt");
-        FileReader fileValue = new FileReader("src/SAT/PROJET1/java/resources/reformule_comp.txt");
+        FileReader fileValue = new FileReader("src/SAT/PROJET1/java/resources/formule_comp.txt");
 
         Scanner literalsScanner = new Scanner(fileLiteral);
         Scanner valuesScanner = new Scanner(fileValue);
