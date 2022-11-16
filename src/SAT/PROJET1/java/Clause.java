@@ -1,11 +1,9 @@
-package SAT.PROJET1;
+package SAT.PROJET1.java;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Clause {
-    ArrayList<Literal> literals = new ArrayList<>() ;
-
+    ArrayList<Literal> literals;
 
 
     public Clause(ArrayList<Literal> literals) {
@@ -18,6 +16,10 @@ public class Clause {
 
     public void addLiteral(Literal literal){
         this.literals.add(literal);
+    }
+
+    public void removeLiteral(Literal literal){
+        this.literals.remove(literal);
     }
 
     @Override

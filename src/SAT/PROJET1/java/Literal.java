@@ -1,4 +1,4 @@
-package SAT.PROJET1;
+package SAT.PROJET1.java;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,13 +7,12 @@ import java.util.Scanner;
 
 public class Literal {
     private int sommet;
-    private int value ;
+    private int value;
 
 
     public Literal(int sommet) {
         this.sommet = sommet;
     }
-
 
     public void setValue(int value) {
         this.value = value;
@@ -34,8 +33,8 @@ public class Literal {
     public static void main(String[] args) throws FileNotFoundException {
         // Nombre de clauses et nombre de literals
 
-        FileReader fileLiteral = new FileReader("src/SAT/PROJET1/formule-2-sat.txt");
-        FileReader fileValue = new FileReader("src/SAT/PROJET1/formule_comp.txt");
+        FileReader fileLiteral = new FileReader("src/SAT/PROJET1/java/resources/formule-2-sat.txt");
+        FileReader fileValue = new FileReader("src/SAT/PROJET1/java/resources/reformule_comp.txt");
 
         Scanner literalsScanner = new Scanner(fileLiteral);
         Scanner valuesScanner = new Scanner(fileValue);
