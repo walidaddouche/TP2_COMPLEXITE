@@ -6,12 +6,8 @@ public class Clause {
     ArrayList<Litteral> litteraux;
 
 
-    public Clause(ArrayList<Litteral> litteraux) {
-        this.litteraux = litteraux;
-    }
-
     public Clause(){
-        litteraux = new ArrayList<>();
+        this.litteraux = new ArrayList<>();
     }
 
     public void addLiteral(Litteral litteral){
@@ -34,8 +30,8 @@ public class Clause {
 
     public boolean evaluer(){
         int nombreLitterauxVrai = 0;
-        for(int i = 0 ; i < litteraux.size() ; i++){
-            if(litteraux.get(i).evaluer()){
+        for (Litteral litteral : litteraux) {
+            if (litteral.evaluer()) {
                 nombreLitterauxVrai++;
             }
         }
@@ -45,13 +41,17 @@ public class Clause {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        str.append("(");
 
-        for (Litteral litteral : litteraux) {
-            str.append(litteral).append(" ⋂ ");
+        for(int i = 0 ; i < litteraux.size()-1 ; i++){
+            str.append(litteraux.get(i)).append(" U ");
         }
+        str.append(litteraux.get(litteraux.size()-1));
+
+        str.append(")");
         return str.length() == 0
                 ? null
-                : str.substring(0, str.length() - 2);
+                : str.substring(0, str.length());
     }
 
     public ArrayList<Litteral> getLitteraux() {

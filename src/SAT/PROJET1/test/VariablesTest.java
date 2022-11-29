@@ -1,12 +1,12 @@
-package SAT.PROJET1.java;
+package SAT.PROJET1.test;
 
+import SAT.PROJET1.java.Variables;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class VariablesTest {
+
   @Test
   void testExistenceVariableEtAdd() {
     Variables variables = new Variables();

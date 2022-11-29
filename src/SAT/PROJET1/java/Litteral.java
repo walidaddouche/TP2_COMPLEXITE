@@ -2,32 +2,23 @@ package SAT.PROJET1.java;
 
 public class Litteral {
     private int variable;
-    private boolean estVrai; // Indiquer si la variable vaut 0 ou 1 (sans prendre en compte son signe "-" devant s'il y est).
-    // 0 = false et 1 = true
+
+    Variables variables;
 
 
-    public Litteral(int variable, boolean estVrai) {
+    public Litteral(int variable, Variables variables) {
         if(variable == 0){
             this.variable = 1;
         }
         else{
             this.variable = variable;
         }
-        this.variable = variable;
-        this.estVrai = estVrai;
+        this.variables = variables;
     }
 
-
-    public Litteral(int variable) {
-        this(variable, true);
-    }
 
     public boolean getEtat(){
-        return estVrai;
-    }
-
-    public void setEtat(boolean estVrai) {
-        this.estVrai = estVrai;
+        return variables.estVariableVraie(variable);
     }
 
     public int getVariable() {
@@ -43,29 +34,19 @@ public class Litteral {
 
     public boolean evaluer(){
         boolean estPositif = variable >= 0;
-        if(!estVrai)
+        if(!getEtat())
             estPositif = !estPositif;
         return estPositif;
     }
 
 
-    public boolean compareLiteral(Litteral literal2){
-        return (variable == literal2.variable) && (estVrai == literal2.estVrai);
-    }
-
     @Override
     public String toString() {
-        int variableAffichage = variable;
-        boolean estPositif = true;
+        int variableAffichee = Math.abs(variable);
         if(variable < 0) {
-            estPositif = false;
-            variableAffichage = Math.abs(variable) ;
+            return "¬" + Math.abs(variableAffichee);
         }
-        if(!estVrai)
-            estPositif = !estPositif;
-        if(estPositif)
-            return "" + variableAffichage;
-        return "¬" + variableAffichage;
+        return "" + variableAffichee;
     }
 
 }

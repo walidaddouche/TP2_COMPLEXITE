@@ -1,10 +1,10 @@
 package SAT.PROJET3.java;
 
-import SAT.PROJET1.java.FormuleV2;
+import SAT.PROJET1.java.Formule;
 
 public class ContrainteCase {
     int x,y;
-    FormuleV2 formules;
+    Formule formules;
 
     public ContrainteCase(int x, int y){
         this.x = x;
@@ -12,7 +12,7 @@ public class ContrainteCase {
     }
 
     public void ajoutContrainteUnicite(){
-        FormuleV2 formule = new FormuleV2();
+        Formule formule = new Formule();
         for(int i = 1 ; i <= 9 ; i++){
             for(int j = 1 ; j <= 9 ; j++){
 

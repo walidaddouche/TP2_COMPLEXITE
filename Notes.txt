@@ -1,3 +1,6 @@
+Symbole négation à copier/coller : ¬
+
+
 SUDOKU :
 
 Contrainte à prendre en compte :
