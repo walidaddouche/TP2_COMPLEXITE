@@ -10,23 +10,29 @@ public class Variables {
   }
 
   public void add(int valeur){
-    //TODO gérer doublons
     if(valeur == 0){
       valeur = 1;
     }
-    variables.add(valeur);
+    if(!testExistenceVariable(valeur)){
+      variables.add(valeur);
+    }
+
   }
 
-  public boolean testExistenceVariable(int index){
+  public boolean testExistenceVariable(int value){
     for(int variable : variables){
-      if(Math.abs(variable) == Math.abs(index))
+      if(Math.abs(variable) == Math.abs(value))
         return true;
     }
     return false;
   }
 
   public boolean estVariableVraie(int value){
-    return value > 0;
+    for(int variable : variables){
+      if(Math.abs(variable) == Math.abs(value))
+        return variable > 0;
+    }
+    return false;
   }
 
   public ArrayList<Integer> getVariables() {

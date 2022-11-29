@@ -26,7 +26,7 @@ class ClauseTest {
     }
 
     @Test
-    void removeLiteral() throws Exception {
+    void removeLiteral() {
         Clause clause = new Clause();
         clause.addLiteral(new Litteral(3));
         clause.addLiteral(new Litteral(-2));
