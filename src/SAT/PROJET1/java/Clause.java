@@ -3,35 +3,72 @@ package SAT.PROJET1.java;
 import java.util.ArrayList;
 
 public class Clause {
-    ArrayList<Literal> literals;
+    ArrayList<Litteral> litteraux;
 
 
-    public Clause(ArrayList<Literal> literals) {
-        this.literals = literals;
+    public Clause(ArrayList<Litteral> litteraux) {
+        this.litteraux = litteraux;
     }
 
     public Clause(){
-        literals = new ArrayList<>();
+        litteraux = new ArrayList<>();
     }
 
-    public void addLiteral(Literal literal){
-        this.literals.add(literal);
+    public void addLiteral(Litteral litteral){
+        this.litteraux.add(litteral);
     }
 
-    public void removeLiteral(Literal literal){
-        this.literals.remove(literal);
+    public void removeLiteral(Litteral litteral){
+        litteraux.remove(litteral);
+    }
+
+    public void removeLiteral(int variable){
+        for(Litteral litteral : litteraux){
+            if(litteral.getVariable() == variable){
+                litteraux.remove(litteral);
+                return;
+            }
+        }
+    }
+
+
+    public boolean evaluer(){
+        int nombreLitterauxVrai = 0;
+        for(int i = 0 ; i < litteraux.size() ; i++){
+            if(litteraux.get(i).evaluer()){
+                nombreLitterauxVrai++;
+            }
+        }
+        return nombreLitterauxVrai >= 1;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
 
-        for (Literal literal: literals) {
-            str.append(literal).append(" ⋂ ");
+        for (Litteral litteral : litteraux) {
+            str.append(litteral).append(" ⋂ ");
         }
         return str.length() == 0
                 ? null
                 : str.substring(0, str.length() - 2);
+    }
+
+    public ArrayList<Litteral> getLitteraux() {
+        return litteraux;
+    }
+
+    public Litteral getLitteral(int variable) {
+        for(Litteral litteral : litteraux){
+            if(litteral.getVariable() == variable){
+                return litteral;
+            }
+        }
+        return null;
+    }
+
+    public void setLitteraux(ArrayList<Litteral> litteraux) {
+        this.litteraux = litteraux;
     }
 }
 
