@@ -29,8 +29,8 @@ class LitteralTest {
         Litteral litteral2 = new Litteral(2, JeuxDeValeurs.getJeuDeVariables());
         Litteral litteral3 = new Litteral(-2, JeuxDeValeurs.getJeuDeVariables());
         assertEquals("1", litteral1.toString());
-        assertEquals("¬2", litteral2.toString());
+        assertEquals("2", litteral2.toString());
         // Dans ce cas, on est confronté à une double négation, donc cela revient à être un nombre positif
-        assertEquals("2", litteral3.toString());
+        assertEquals("¬2", litteral3.toString());
     }
 }

@@ -13,6 +13,7 @@ public class Litteral {
         else{
             this.variable = variable;
         }
+        this.ensembleVariables = ensembleVariables;
     }
 
 
