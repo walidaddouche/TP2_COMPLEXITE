@@ -56,4 +56,15 @@ public class Sudoku {
         }
     }
 
+    public int[][] getGrille(){
+        return grille;
+    }
+
+    public int getTaille(){
+        return (int) Math.sqrt(grille.length);
+    }
+    public int getTaillePuissance(){
+        return grille.length;
+    }
+
 }

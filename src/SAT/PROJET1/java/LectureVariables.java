@@ -37,7 +37,6 @@ public class LectureVariables {
     catch(IOException e){
       throw new IOException("Fichier lecture variables : Fichier non reconnu, vérifier le chemin que vous avez renseigné !");
     }
-    //TODO Lire variables 1 par 1 et les mettre dans Variables
   }
 
 

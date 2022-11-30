@@ -4,9 +4,9 @@ Symbole négation à copier/coller : ¬
 SUDOKU :
 
 Contrainte à prendre en compte :
--Au moins 1 chiffre par case
--Au plus 1 chiffre par case
--Pas 2 fois le même chiffre dans une ligne
+-Au moins 1 chiffre par case OK
+-Au plus 1 chiffre par case OK
+-Pas 2 fois le même chiffre dans une ligne (OK)
 -Pas 2 fois le même chiffre dans une colonne
 -Pas 2 fois le même chiffre dans une région
 
