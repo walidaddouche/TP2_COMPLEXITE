@@ -1,20 +1,19 @@
 package SAT.PROJET1;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Formula {
+
     Clause[] clauses;
     Literal[] literals;
     int nL;
     int nC;
 
-
-    Formula(Clause[] clauses) {
-        this.clauses = clauses;
-    }
 
     Formula(Literal[] literals, Clause[] clauses, int nL, int nC) {
         this.clauses = clauses;
@@ -23,9 +22,12 @@ public class Formula {
         this.nL = nL;
     }
 
+    public void setClauses(Clause[] clauses) {
+        this.clauses = clauses;
+    }
 
-    public static Formula initializeLiterals() throws FileNotFoundException {
-        FileReader fileLiteral = new FileReader("src/SAT/PROJET1/formule-2-sat.txt");
+    public static Formula initializeLiterals(String path) throws FileNotFoundException {
+        FileReader fileLiteral = new FileReader(path);
         Scanner literalsScanner = new Scanner(fileLiteral);
 
         while (!literalsScanner.hasNextInt()) {
@@ -73,9 +75,9 @@ public class Formula {
     }
 
 
-    private void setLiteralsValues() throws FileNotFoundException {
+    private void setLiteralsValues(Formula formula,String path) throws FileNotFoundException {
         int value;
-        FileReader fileValue = new FileReader("src/SAT/PROJET1/formule_comp.txt");
+        FileReader fileValue = new FileReader(path);
         Scanner valuesScanner = new Scanner(fileValue);
 
 
@@ -101,21 +103,31 @@ public class Formula {
             result = false;
         }
 
-        Formula formula = new Formula(clauses);
 
-        for (boolean b : resultArray) {
-            if (!b) {
-                System.out.println(false);
-            }
-        }
+        formula.setClauses(clauses);
+
+
     }
 
-    public static Formula getFormula() throws FileNotFoundException {
-        Formula f = initializeLiterals();
-        f.setLiteralsValues();
+    public static Formula getFormula(String path) throws FileNotFoundException {
+        Formula f = initializeLiterals(path);
+
+        f.setLiteralsValues(f,path);
+
         return f;
-
     }
+
+
+
+
+    public boolean isSatisfiable() {
+        for (Clause clause : clauses) {
+            if (!clause.isSatisfiable())
+                return false;
+        }
+        return true;
+    }
+
 
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -141,14 +153,18 @@ public class Formula {
         str.append("}");
 
         return str.toString();
-
     }
 
+    public static void main(String[] args) {
+        try {
+            Formula formula = getFormula("src/SAT/PROJET1/formule-2-sat.cnf");
+            System.out.println(formula.clauses[0].literals);
 
-    public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(getFormula());
 
-
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
     }
+
 
 }
