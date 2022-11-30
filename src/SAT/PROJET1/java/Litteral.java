@@ -3,22 +3,21 @@ package SAT.PROJET1.java;
 public class Litteral {
     private int variable;
 
-    Variables variables;
+    Variables ensembleVariables;
 
 
-    public Litteral(int variable, Variables variables) {
+    public Litteral(int variable, Variables ensembleVariables) {
         if(variable == 0){
             this.variable = 1;
         }
         else{
             this.variable = variable;
         }
-        this.variables = variables;
     }
 
 
     public boolean getEtat(){
-        return variables.estVariableVraie(variable);
+        return ensembleVariables.estVariableVraie(variable);
     }
 
     public int getVariable() {

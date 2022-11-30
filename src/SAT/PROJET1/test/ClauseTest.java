@@ -19,7 +19,7 @@ class ClauseTest {
     }
 
     @Test
-    void removeLiteral() {
+    void removeLiteral() throws Exception {
         Clause clause = new Clause();
         clause.addLiteral(new Litteral(-1, JeuxDeValeurs.getJeuDeVariables()));
         clause.addLiteral(new Litteral(-2, JeuxDeValeurs.getJeuDeVariables()));
@@ -33,7 +33,7 @@ class ClauseTest {
     }
 
     @Test
-    void evaluer() {
+    void evaluer() throws Exception {
         Clause clause1 = new Clause();
         clause1.addLiteral(new Litteral(-1, JeuxDeValeurs.getJeuDeVariables()));
         clause1.addLiteral(new Litteral(-2, JeuxDeValeurs.getJeuDeVariables()));
@@ -48,11 +48,11 @@ class ClauseTest {
     }
 
     @Test
-    void testToString() {
+    void testToString() throws Exception {
         Clause clause1 = new Clause();
         clause1.addLiteral(new Litteral(1, JeuxDeValeurs.getJeuDeVariables()));
-        clause1.addLiteral(new Litteral(2, JeuxDeValeurs.getJeuDeVariables()));
-        clause1.addLiteral(new Litteral(3, JeuxDeValeurs.getJeuDeVariables()));
+        clause1.addLiteral(new Litteral(-2, JeuxDeValeurs.getJeuDeVariables()));
+        clause1.addLiteral(new Litteral(-3, JeuxDeValeurs.getJeuDeVariables()));
         assertEquals("(1 U ¬2 U ¬3)", clause1.toString());
 
     }
